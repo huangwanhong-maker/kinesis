@@ -1,0 +1,37 @@
+# Laws from Records
+
+Status: **draft** (2026-11-13). Module `kinesis::induction`.
+
+## 1. Concepts
+
+A model is matched, discovered or learned by one mechanism: filling the unknowns of a template from a record. A template is a declaration with unknowns, numbers (`?a`) and sparse combinations of a library of terms (`unknown f : sparse poly(x, y, 3)`); the fit returns the same declaration with the unknowns replaced by what the record gives, so that the result is a system of the language, and runs, and is analysed, as any other. A known model becomes a template when some of its parameters are freed; a template that asks for a sparse law of every state is the discovery of a law with no law proposed.
+
+The linear algebra is that of a library Θ evaluated on the record: a law x' = Σ ξ_k θ_k(x) that holds on the record solves Θ ξ = x', and a sparse solution is sought by sequentially thresholded least squares. The weak form tests the law against windows, ∫ φ x' dt = −∫ φ' x dt, so that the regression is between integrals of the record. Beside laws stand two things with no law in them: a linear operator fitted to a record (dynamic mode decomposition, and its extension on a dictionary, a finite section of Koopman's operator), and a forecaster for a system known only as data or as an oracle. Theory: [docs/theory.md](../docs/theory.md).
+
+## 2. Content
+
+- `sparse.hpp`: `derivatives(r)`, by differences of the second order; `monomials(variables, degree, constant)`; `library_of(spec)` (`poly(x, y, 3)`, a sum, or one term); `evaluate(library, names, rows, times, time)`, the matrix Θ; `SparseOptions{threshold, most, keep}`, `SparseFit{coefficients, terms, residual, rounds}`, `stlsq(theta, y, o)`; `Weak{matrix, targets}`, `weak_form(r, theta, half, stride, power)` with φ(t) = (1 − s²)^p on windows that overlap.
+- `fit.hpp`: `FitOptions{threshold, weak, half, stride, most}`; `Fit{system, numbers, terms, parameters, residual, samples, linear, iterations, method}`; `fit(tmpl, record, o)`, for a flow, a map, or an action through the Euler–Lagrange equations it implies: least squares where every equation is affine in the unknowns, the Levenberg–Marquardt iteration where it is not; `discovery_template(record, degree, name, discrete)`.
+- `operators.hpp`: `Linear{matrix, eigenvalues, rates, residual}`; `dmd(record)`; `edmd(record, dictionary)`.
+- `surrogate.hpp`: `Forecaster` with `increment(recent)` and `forecast(history, steps)`, the next-generation reservoir computer: a constant, the state at the last samples and every product of two of those, fitted by ridge regression; `forecaster(record, delays, skip, ridge)`; `horizon(forecast, truth, tolerance)`.
+- `match.hpp`: `as_template(model, free)`; `Moments`, `kramers_moyal(series, h, bins, lower, upper)`; `fit_stochastic(tmpl, record)`, the drift by least squares on the increments and the size of the noise from what the drift leaves; `Candidate`, `MatchOptions`, `match(templates, record, o)`, each candidate fitted to the first part of the record, run on the rest, and ordered by Schwarz's criterion on the one-step errors.
+
+*Caveat.* A sparse fit depends on the library holding the true terms and on the threshold; with a library that does not, a sparse law is still returned, and fits. The residual of a fit measures how well the equations hold on the record, not whether the template is right. The Levenberg–Marquardt iteration finds a local minimum; another start may find another. Unknown functions (`unknown V : function`) are not filled here.
+
+*Caveat.* When the span of a dictionary is not invariant, the matrix of `edmd` has eigenvalues that belong to no eigenfunction; the residuals that tell them apart are not computed here. A record with noise biases the eigenvalues of plain DMD towards zero.
+
+*Caveat.* The forecaster is a black box by construction: it is not a system of the language, and has no terms to analyse. Its quadratic features are an assumption about the law, and its ridge is to be chosen by the horizon on a part kept aside, not by the error of one step.
+
+*Caveat.* The Kramers–Moyal estimates are of the first order in the step of the record, and `fit_stochastic` is for diagonal noise. On a chaotic record the horizon is bounded by the largest Lyapunov exponent whatever the model; a ranking is among the candidates given, and says nothing of a model that was not proposed.
+
+## 3. Checks
+
+37, every record simulated, so that the law to be recovered is known: differences of the second order exact on a parabola, and the monomials of n variables up to degree d numbering C(n + d, d); from a record of Lorenz's system, a sparse law of the monomials up to degree 2 with Lorenz's seven terms and no other, with its coefficients, which written out reads back, runs, and follows the record for a time, and the same for the logistic map and Hénon's; with noise on the record, the weak form keeping the seven terms where differences of the record do not, with closer coefficients; a model's parameters freed and found again (Lorenz's σ, ρ, β), an unknown that is not linear (the capacity of a logistic growth) by the Levenberg–Marquardt iteration, and an unknown inside an action (a pendulum's g/l) through its Euler–Lagrange equations; dynamic mode decomposition giving a linear system's rates, and on the dictionary {x, y, x²} the Koopman eigenvalues μ, λ and 2μ of x' = μx, y' = λ(y − x²); a forecaster with one step of Lorenz to a part in a thousand and a free run near the truth for more than three Lyapunov times; the rate and the noise of an Ornstein–Uhlenbeck process from a path, by a template and in bins; of three candidate laws for a record of van der Pol's oscillator, van der Pol's ranking first, and a candidate whose states the record does not hold listed with the reason it was refused.
+
+## 4. Dependencies
+
+`kinesis::systems` (and through it `kinesis::language`, `kinesis::terms` and `kinesis::kernel`); calx's `linalg` (dense and rectangular matrices, QR and least squares, eigenvalues) and `random`. The checks use calx's `verification`.
+
+## 5. References
+
+Sparse regression: Brunton, Proctor and Kutz (2016), Proc. Natl Acad. Sci. 113, 3932–3937; Zhang and Schaeffer (2019); Messenger and Bortz (2021); Schaeffer and McCalla (2017). Fitting: Marquardt (1963); the idea of 2026-11-12, §5.4. Operators: Schmid (2010); Tu et al. (2014); Williams, Kevrekidis and Rowley (2015); Colbrook and Townsend (2024). Forecasting: Gauthier, Bollt, Griffith and Barbosa (2021); Zhang and Cornelius (2023). Matching: Risken (1989), §4.1; Friedrich, Peinke, Sahimi and Tabar (2011), §3; Schwarz (1978). In the checks: Brunton, Brunton, Proctor and Kutz (2016), PLoS ONE 11, e0150171.

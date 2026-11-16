@@ -11,7 +11,7 @@ kinesis holds dynamical systems as objects of study and of inference:
 - a language in which a system is declared by its change, structure, constraint and difference, whatever its kind: a flow, a map, a system with events, a stochastic differential, a system given by its action, an open quantum system, a rewriting system, a system made of systems;
 - what a declared law does over time: runs, exponents, equilibria, diagrams, basins, landscapes, signs of criticality, the lift to operators;
 - what a record identifies: braids of trajectories, read and certified under stated assumptions;
-- laws recovered from records: templates filled, sparse discovery, candidates ranked, a catalogue of models;
+- laws recovered from records: templates filled, sparse discovery, candidates ranked, a catalogue of models; balance laws of a density on a graph of cells, run and learned from a few snapshots (decision 0005);
 - later, statistical fields that run, the reversal of stochastic differentials, and oracles.
 
 It builds on four sibling libraries:
@@ -67,7 +67,7 @@ kinesis shares its governing principle with its sibling repositories: **modular,
 ```
 kinesis/
 ├── CMakeLists.txt   the project: one header-only target kinesis::<module> per module (kinesis_module); the siblings added once
-├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/
+├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/ · balance/
 ├── docs/            the theory note
 └── development/     decisions · ideas · release notes
 ```

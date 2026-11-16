@@ -67,3 +67,4 @@ kinesis_module(braids LIBRARIES kinesis::kernel morphe::algebra morphe::arithmet
 kinesis_module(induction LIBRARIES kinesis::systems calx::linalg calx::random)
 kinesis_module(coupling LIBRARIES kinesis::systems CHECK_LIBRARIES kinesis::analysis)
 kinesis_module(catalogue LIBRARIES kinesis::language CHECK_LIBRARIES kinesis::systems kinesis::analysis kinesis::induction)
+kinesis_module(balance LIBRARIES kinesis::induction calx::linalg CHECK_LIBRARIES calx::random)

@@ -173,6 +173,26 @@ and a class is admissible exactly when this length is at most $(V_i + V_j)h$. Th
 
 *Caveat.* A residual measures how well equations hold on a record, not whether a template is right. A ranking is among the candidates tried. On a chaotic record no model stays near for long, whatever its merit.
 
+### 8.1 Balance Laws on Graphs, from a Few Snapshots
+
+A density $u$ on the cells of a graph, cell $i$ of area $V_i$, cells sharing a face joined by an edge $e$ of conductance $c_e$ (the face's width over the distance between the centres), changes by what crosses the faces and what is made within. With the flux density $q = -D\nabla u - D_2\, u \nabla u + \chi\, u \nabla\Phi$, the finite-volume flux from $a$ to $b$ is
+
+$$F_e = c_e\Big[-D\,(u_b - u_a) - D_2\,\tfrac{1}{2}(u_b^2 - u_a^2) + \chi\,(\Phi_b - \Phi_a)\,\tfrac{1}{2}(u_a + u_b)\Big],$$
+
+and $\dot u_a = -V_a^{-1}\sum_{e \ni a} F_e + r u_a + s\, u_a^2 + g\, u_a\ln u_a + \dots$ Every flux is conservative by construction, so that $\sum_i V_i \dot u_i$ is what the reaction makes. The law is linear in its coefficients $\theta = (D, D_2, \chi, r, s, g, \dots)$: $\dot u = \sum_k \theta_k T_k[u]$.
+
+**Proposition 8.1** (well-posedness). *With $D < 0$ and no other term the law is the backward heat equation, whose Fourier mode of wavenumber $k$ grows as $e^{|D|k^2 t}$; on the grid the largest growth rate is $8|D|/h^2$, and a run amplifies the smallest wiggle of the record by $e^{8|D|t/h^2}$.* So a negative diffusion found by least squares is set aside, and the other terms fitted again (an active set). *Proof.* The five-point Laplacian has eigenvalues $-(4/h^2)(\sin^2(k_xh/2) + \sin^2(k_yh/2)) \in [-8/h^2, 0]$. $\square$
+
+**The integral form.** Between snapshots $t_k$ and $t_{k+1}$, $u(t_{k+1}) - u(t_k) = \sum_j \theta_j \int T_j[u]\,dt \approx \sum_j \theta_j\, \tfrac{\Delta t}{2}\big(T_j[u(t_k)] + T_j[u(t_{k+1})]\big)$: one linear equation per cell and interval, with no derivative of the record. Its bias is the trapezoid's, $O(\Delta t^3\, \dddot u)$ per interval, small when the field changes little between snapshots.
+
+**Shooting.** The law is run from $u(t_0)$ and $\theta$ chosen to minimise $\sum_{k \ge 1}\sum_i w_{ik}^2\,(u_i^\theta(t_k) - u_i(t_k))^2$ by Levenberg–Marquardt, from the integral form's estimate. It has no bias of the step: its error is the record's.
+
+**Judging a forecast.** On snapshots kept aside, skill is $1 - \text{SSE}/\text{SSE}_0$ against carrying the last snapshot forward. The *pattern's* skill rescales each forecast, and the carried snapshot, to the record's total at each time before comparing: it measures where the quantity went apart from how much there was. Uniform growth has pattern skill zero by construction, since its forecast is the carried snapshot rescaled.
+
+**Modes from a few snapshots.** With $n$ cells far more than the $m$ snapshots, exact DMD fits the operator on the snapshots' span: $X^\top X = V\Sigma^2 V^\top$ (Sirovich's method of snapshots), $\tilde A = \Sigma^{-1}V^\top (X^\top Y)V\Sigma^{-1}$, its eigenpairs $(\lambda_k, w_k)$, the modes $\phi_k = Y V \Sigma^{-1} w_k/\lambda_k$ (Tu et al. 2014). For a field moved by a linear law the modes and eigenvalues are the law's.
+
+*Caveat.* What a law with few shared coefficients can describe is what it holds. A city's density is pinned by its buildings: a diffusion strong enough to move people a kilometre a year would flatten its centre within a year, and is not found in its record. The standard errors treat neighbouring cells as independent, and so understate.
+
 ## 9. Systems of Systems
 
 A composite declares parts and wires an input of one to a term of the others' states.
@@ -204,7 +224,7 @@ Since a record's components have no names a catalogue knows, a plain model (a fl
 - The derivations `expand` (a field theory into the rules that glue its vertices), `reverse` (the time reversal of a stochastic differential, with its score), `lift`, `legendre` and `unravel`; statistical fields as systems that run.
 - Unknown functions, and learning them; the score of a diffusion model.
 - Oracles as declarations: a physical or simulated system driven as a black box.
-- The response-field action of a wired composite (§9); families of components indexed by a number (fourteen shells as one line); a discretised fluid.
+- The response-field action of a wired composite (§9); families of components indexed by a number (fourteen shells as one line); a discretised fluid beyond balance laws of a density on a graph (§8.1, decision 0005): momentum, pressure and the equations of a fluid itself.
 - The weighted forms of Constraint and Difference; a check that a declared invariance holds.
 - Samplers of laws known up to normalisation, agreed to belong in tyche.
 - Garside's normal form and conjugacy of braids; records in which points arrive and leave, beyond cutting them into segments; representations of braids beyond Burau's.

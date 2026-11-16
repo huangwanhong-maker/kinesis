@@ -13,6 +13,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0002](0002-scope-boundaries-and-dependencies.md) | Scope, boundaries and dependencies: what a generator does over time, and generators recovered from records | Accepted |
 | [0003](0003-the-first-modules.md) | The first modules, and the language | Accepted, provisionally |
 | [0004](0004-averages-coupling-by-an-action-and-a-cascade.md) | Averages of what a system observes, coupling by an interaction action, and a shell model of turbulence | Accepted, provisionally |
+| [0005](0005-balance-laws-on-graphs.md) | Balance laws of a density on a graph, run and learned from a few snapshots (the integral form, shooting, well-posedness), judged as a whole and as a pattern, and the modes of a field from a few snapshots | Accepted, provisionally |
 
 ## 2. Template
 

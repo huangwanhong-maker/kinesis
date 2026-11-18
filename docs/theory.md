@@ -209,6 +209,27 @@ A composite declares parts and wires an input of one to a term of the others' st
 
 Parts of different forms have no common presentation and are advanced side by side: at each communication step $H$ the wires are read on the states of all parts, the inputs are held, and each part is advanced over $H$ by its own method (the explicit scheme of Jacobi; Kübler and Schiehlen 2000). Its error is of the first order in $H$ where a wired signal varies within a step, and it is exact where the signals are constant between steps, as when a map drives a flow. The order of the parts does not matter.
 
+**Systems across scales (decision 0007).** A system across scales lives on a hierarchy $\mathcal H$: levels $L_0, \dots, L_m$, the finest first, with maps $\pi_\ell : L_\ell \to L_{\ell+1}$ onto the level above, so that the fibres $\pi_\ell^{-1}(v)$, the children of $v$, partition $L_\ell$. A quantity of level $\ell$ is a function $x : L_\ell \to \mathbb R$. Between levels there are two kinds of linear operator, and a model is consistent across its levels when it uses them for every crossing:
+
+- *carrying up*, $(\Sigma x)(v) = \sum_{u \in \pi^{-1}(v)} x(u)$, and the weighted mean $(M_w x)(v) = \Sigma(wx)(v)/\Sigma w(v)$;
+- *allocating down*, $(A_s X)(u) = s(u)\,X(\pi(u))$ with shares $s \ge 0$ summing to one on every fibre (proportional, $s = y/(\Sigma y)\circ\pi$; logit, $s = e^{y}/(\Sigma e^{y})\circ\pi$).
+
+**Proposition 9.3.** $\Sigma A_s = \mathrm{id}$ on quantities of the level above: what is allocated sums to what was there. For extensive $a, b$ the index $\Sigma a / \Sigma b$ equals the weighted mean $M_b(a/b)$ of the units' ratios, which in general differs from their plain mean.
+
+*Proof.* $\Sigma A_s X(v) = X(v)\sum_{u\in\pi^{-1}(v)} s(u) = X(v)$; and $M_b(a/b) = \Sigma(b\cdot a/b)/\Sigma b = \Sigma a/\Sigma b$. $\square$
+
+A non-linear index of the units beneath (Gini's coefficient, the dissimilarity, a concentration) is a reduction $\rho(x|_{\pi^{-1}(v)})$, recomputed at each level from the level below and never averaged; a decomposable one (Theil's) has within and between parts.
+
+**Paces.** Each law has its step $h_k = n_k h$. In the base step $[t_n, t_{n+1}]$ every law whose step begins at $t_n$ reads the states of all others as they are at $t_n$ and advances over its own step; its result is applied when its step ends. This is the explicit (Jacobi) scheme of co-simulation above; its error is of the first order in a slow law's step wherever a fast state varies within it (a check on a linear two-rate system finds the error halving with the step), and when all laws share one step it is Runge–Kutta's classical step on the whole.
+
+**Proposition 9.4 (Tikhonov; Fenichel).** For $\dot x = f(x, y)$, $\varepsilon\,\dot y = g(x, y)$ with $\partial g/\partial y$ uniformly negative definite on a compact piece of the slow manifold $g = 0$, the solution from a point near that manifold stays within $O(\varepsilon)$ of the reduced system $\dot x = f(x, h(x))$, $g(x, h(x)) = 0$, on finite intervals (Tikhonov 1952; Fenichel 1979). A law in *equilibrium* form solves its fixed point at every instant and is that reduced system; a check finds the error of the fast flow falling in proportion to $\varepsilon$.
+
+**Proposition 9.5 (perfect aggregation).** A linear law $\dot x = Mx$ and an aggregation $y = Ax$ ($A$ of full row rank) give a closed law $\dot y = \tilde M y$ for every initial $x$ if and only if $AM = \tilde M A$ for some $\tilde M$, that is, iff the row space of $A$ is invariant under $M^{\mathsf T}$; then $\tilde M = AMA^{\mathsf T}(AA^{\mathsf T})^{-1}$ (Iwasa, Andreasen and Levin 1987). For a partition summed, the condition is that for every two groups $I, J$ the column sums $\sum_{i\in I} M_{ij}$ agree for all $j \in J$.
+
+*Proof.* If $AM = \tilde MA$ then $\dot y = A\dot x = AMx = \tilde M Ax = \tilde M y$. Conversely, if $\dot y$ is a function of $y$ alone for every $x$, it is linear and $AMx = \tilde M A x$ for all $x$. Multiplying $AM = \tilde MA$ on the right by $A^{\mathsf T}(AA^{\mathsf T})^{-1}$ gives $\tilde M$. $\square$
+
+**How each input is known, and what is not.** Every value carries its provenance (observed, estimated with a standard error, declared with a range, modelled). Before a run the model lists what it needs and lacks; a run with anything lacking is refused. This is invariant 4 applied to inputs: no tool answers with a made-up value, and a quantity no record holds is the person's to declare.
+
 ## 10. The Catalogue
 
 A model of the catalogue, of which there are thirty, is a form of law from the literature, written as a declaration with the values of its parameters in common use and its source (`catalogue/models.hpp`). It is a starting point for a study and a hypothesis for a record. **A cascade of turbulence.** The catalogue holds the Sabra shell model (L'vov, Podivilov, Pomyalov, Procaccia and Vandembroucq 1998): wavenumbers $k_n = k_0\lambda^{n-1}$, one complex amplitude $u_n$ a shell, and
@@ -224,7 +245,7 @@ Since a record's components have no names a catalogue knows, a plain model (a fl
 - The derivations `expand` (a field theory into the rules that glue its vertices), `reverse` (the time reversal of a stochastic differential, with its score), `lift`, `legendre` and `unravel`; statistical fields as systems that run.
 - Unknown functions, and learning them; the score of a diffusion model.
 - Oracles as declarations: a physical or simulated system driven as a black box.
-- The response-field action of a wired composite (§9); families of components indexed by a number (fourteen shells as one line); a discretised fluid beyond balance laws of a density on a graph (§8.1, decision 0005): momentum, pressure and the equations of a fluid itself.
+- The response-field action of a wired composite (§9); families of components indexed by a number in the grammar (fourteen shells as one line; systems across scales are declared as structures, decision 0007); higher-order multirate schemes, the profile likelihood and history matching for systems across scales; a discretised fluid beyond balance laws of a density on a graph (§8.1, decision 0005): momentum, pressure and the equations of a fluid itself.
 - The weighted forms of Constraint and Difference; a check that a declared invariance holds.
 - Samplers of laws known up to normalisation, agreed to belong in tyche.
 - Garside's normal form and conjugacy of braids; records in which points arrive and leave, beyond cutting them into segments; representations of braids beyond Burau's.

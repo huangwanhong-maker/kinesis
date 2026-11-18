@@ -69,3 +69,4 @@ kinesis_module(coupling LIBRARIES kinesis::systems CHECK_LIBRARIES kinesis::anal
 kinesis_module(catalogue LIBRARIES kinesis::language CHECK_LIBRARIES kinesis::systems kinesis::analysis kinesis::induction)
 kinesis_module(balance LIBRARIES kinesis::induction calx::linalg CHECK_LIBRARIES calx::random)
 kinesis_module(prisms LIBRARIES kinesis::kernel calx::optimisation CHECK_LIBRARIES calx::random)
+kinesis_module(scales LIBRARIES kinesis::language kinesis::terms calx::linalg tyche::uncertainty tyche::descriptive tyche::probability CHECK_LIBRARIES calx::random)

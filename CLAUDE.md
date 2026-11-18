@@ -12,6 +12,7 @@ kinesis holds dynamical systems as objects of study and of inference:
 - what a declared law does over time: runs, exponents, equilibria, diagrams, basins, landscapes, signs of criticality, the lift to operators;
 - what a record identifies: braids of trajectories, read and certified under stated assumptions; the paths a record of positions admits under a bound on speed, Hägerstrand's prisms (decision 0006);
 - laws recovered from records: templates filled, sparse discovery, candidates ranked, a catalogue of models; balance laws of a density on a graph of cells, run and learned from a few snapshots (decision 0005);
+- systems across scales: quantities on a hierarchy of units carried between levels by named operators and advanced each at its own pace, every input with how it is known, fitted at any level and run over what is declared (decision 0007);
 - later, statistical fields that run, the reversal of stochastic differentials, and oracles.
 
 It builds on four sibling libraries:
@@ -19,7 +20,7 @@ It builds on four sibling libraries:
 - **calx**, for linear algebra, random streams and the report of its checks;
 - **morphe**, for grammars written in BNF with Earley's parser, and for braid groups;
 - **physis**, for the Runge–Kutta step, spectra of exponents and the Lindblad generator;
-- **tyche**, for descriptive statistics and red-noise surrogates.
+- **tyche**, for descriptive statistics, red-noise surrogates, designs and the screening of uncertain inputs.
 
 Out of scope:
 
@@ -67,7 +68,7 @@ kinesis shares its governing principle with its sibling repositories: **modular,
 ```
 kinesis/
 ├── CMakeLists.txt   the project: one header-only target kinesis::<module> per module (kinesis_module); the siblings added once
-├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/ · balance/
+├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/ · balance/ · prisms/ · scales/
 ├── docs/            the theory note
 └── development/     decisions · ideas · release notes
 ```

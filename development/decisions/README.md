@@ -15,6 +15,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0004](0004-averages-coupling-by-an-action-and-a-cascade.md) | Averages of what a system observes, coupling by an interaction action, and a shell model of turbulence | Accepted, provisionally |
 | [0005](0005-balance-laws-on-graphs.md) | Balance laws of a density on a graph, run and learned from a few snapshots (the integral form, shooting, well-posedness), judged as a whole and as a pattern, and the modes of a field from a few snapshots | Accepted, provisionally |
 | [0006](0006-prisms.md) | Prisms: what a record of positions identifies of a path under a bound on speed (Hägerstrand's space-time prism); the deepest point of discs; consistency with a witness or the pair that breaks it; reach and presence in a region, an alibi certified | Accepted, provisionally |
+| [0007](0007-systems-across-scales.md) | Systems across scales: quantities on a hierarchy of units, carried between levels by named operators, advanced each at its own pace; provenance on every input and what is missing refused; ensembles and screening over declarations; fits at any level with identification said; perfect aggregation | Accepted, provisionally |
 
 ## 2. Template
 

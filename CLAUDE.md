@@ -10,7 +10,7 @@ kinesis holds dynamical systems as objects of study and of inference:
 
 - a language in which a system is declared by its change, structure, constraint and difference, whatever its kind: a flow, a map, a system with events, a stochastic differential, a system given by its action, an open quantum system, a rewriting system, a system made of systems;
 - what a declared law does over time: runs, exponents, equilibria, diagrams, basins, landscapes, signs of criticality, the lift to operators;
-- what a record identifies: braids of trajectories, read and certified under stated assumptions;
+- what a record identifies: braids of trajectories, read and certified under stated assumptions; the paths a record of positions admits under a bound on speed, Hägerstrand's prisms (decision 0006);
 - laws recovered from records: templates filled, sparse discovery, candidates ranked, a catalogue of models; balance laws of a density on a graph of cells, run and learned from a few snapshots (decision 0005);
 - later, statistical fields that run, the reversal of stochastic differentials, and oracles.
 

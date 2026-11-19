@@ -13,6 +13,7 @@ kinesis holds dynamical systems as objects of study and of inference:
 - what a record identifies: braids of trajectories, read and certified under stated assumptions; the paths a record of positions admits under a bound on speed, Hägerstrand's prisms (decision 0006);
 - laws recovered from records: templates filled, sparse discovery, candidates ranked, a catalogue of models; balance laws of a density on a graph of cells, run and learned from a few snapshots (decision 0005);
 - systems across scales: quantities on a hierarchy of units carried between levels by named operators and advanced each at its own pace, every input with how it is known, fitted at any level and run over what is declared (decision 0007);
+- critical transitions read from records of structured states: charts for vectors, compositions, histograms and covariances, a neighbourhood and a hierarchy of units, indicators that say what they see and are blind to, tests with their error rates at the record's length, and verdicts of signal, no signal or undecidable (decision 0008);
 - later, statistical fields that run, the reversal of stochastic differentials, and oracles.
 
 It builds on four sibling libraries:
@@ -68,7 +69,7 @@ kinesis shares its governing principle with its sibling repositories: **modular,
 ```
 kinesis/
 ├── CMakeLists.txt   the project: one header-only target kinesis::<module> per module (kinesis_module); the siblings added once
-├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/ · balance/ · prisms/ · scales/
+├── kernel/ · terms/ · language/ · systems/ · analysis/ · braids/ · induction/ · coupling/ · catalogue/ · balance/ · prisms/ · scales/ · transitions/
 ├── docs/            the theory note
 └── development/     decisions · ideas · release notes
 ```

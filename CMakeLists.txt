@@ -70,3 +70,5 @@ kinesis_module(catalogue LIBRARIES kinesis::language CHECK_LIBRARIES kinesis::sy
 kinesis_module(balance LIBRARIES kinesis::induction calx::linalg CHECK_LIBRARIES calx::random)
 kinesis_module(prisms LIBRARIES kinesis::kernel calx::optimisation CHECK_LIBRARIES calx::random)
 kinesis_module(scales LIBRARIES kinesis::language kinesis::terms calx::linalg tyche::uncertainty tyche::descriptive tyche::probability CHECK_LIBRARIES calx::random)
+kinesis_module(transitions LIBRARIES kinesis::analysis kinesis::scales calx::linalg calx::random calx::transforms calx::optimisation
+               tyche::descriptive tyche::time_series tyche::compositions)
